@@ -33,7 +33,7 @@ class Orders extends Component{
       seedName: ""
     },
     tray:{
-      size:""
+      trayType:""
     }
       }
     ],
@@ -64,7 +64,7 @@ class Orders extends Component{
             deliveryDate: response.data.deliveryDate,
             qty: response.data.orderDetails[0].qty,
             seedName: response.data.orderDetails[0].seed.seedName,
-            size:response.data.orderDetails[0].tray.size
+            size:response.data.orderDetails[0].tray.trayType
           });
         }
       }).catch((error)=>{
@@ -95,7 +95,7 @@ class Orders extends Component{
                 seedName: this.state.seedName
             },
             tray:{
-                size:this.state.size
+                size:this.state.trayType
             }
         }
       ]
@@ -129,7 +129,7 @@ class Orders extends Component{
           },
           tray:
           {
-            size:this.state.size
+            trayType:this.state.trayType
           }
         }      
         ]
@@ -153,7 +153,7 @@ class Orders extends Component{
 
   //add new order form
   render(){
-    const {customerName, seedName, size, qty, orderDate, deliveryDate} = this.state;
+    const {customerName, seedName, trayType, qty, orderDate, deliveryDate} = this.state;
 
     return (
       <Card className="border border-dark formcard">
@@ -178,10 +178,29 @@ class Orders extends Component{
   </Form.Group>
   <Form.Group as = {Col}>
     <Form.Label>Tray Size</Form.Label>
-    <Form.Control required autoComplete="off"
-     type = "text" name = "size"
-    placeholder="Enter Tray size"
-    value = {size}
+    <Form.Check
+     type = "radio" label="10x20 lid" name = "trayType"
+    value = {trayType}
+    onChange={this.orderChange}/>
+    <Form.Check
+     type = "radio" label="10x20 base" name = "trayType"
+    value = {"10x20 base"}
+    onChange={this.orderChange}/>
+    <Form.Check
+     type = "radio" label="10x20 w/drain holes" name = "trayType"
+    value = {"10x20 w/drain holes"}
+    onChange={this.orderChange}/>
+    <Form.Check
+     type = "radio" label="6x8 lid" name = "trayType"
+    value = {"6x8 lid"}
+    onChange={this.orderChange}/>
+    <Form.Check
+     type = "radio" label="6x8 w/drain holes" name = "trayType"
+    value = {"6x8 w/drain holes"}
+    onChange={this.orderChange}/>
+    <Form.Check
+     type = "radio" label="6x8 base" name = "trayType"
+    value = {"6x8 base"}
     onChange={this.orderChange}/>
   </Form.Group>
   <Form.Group as = {Col}>
