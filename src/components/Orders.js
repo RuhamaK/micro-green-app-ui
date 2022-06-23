@@ -5,7 +5,6 @@ import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
-import OrdersN from "./OrdersN";
 
 function withParams(Component) {
   return props => <Component {...props} params={useParams()} />;
@@ -25,6 +24,8 @@ class Orders extends Component{
 
   initialState = {
     CustomerData: [],
+    TrayData:[],
+    SeedData:[],
     order:{
     orderId: "",
     orderDate: '',
@@ -61,6 +62,20 @@ class Orders extends Component{
       CustomerData: response.data
       });
       });
+
+      axios.get(`http://localhost:8080/trays`).then(response => {
+      console.log(response.data);
+      this.setState({
+      TrayData: response.data
+      });
+      });
+
+      axios.get(`http://localhost:8080/seeds`).then(response => {
+        console.log(response.data);
+        this.setState({
+        SeedData: response.data
+        });
+        });
       }
 
     fetchData = orderId =>{
@@ -174,36 +189,50 @@ class Orders extends Component{
           <Card.Body>
     <Form.Group as = {Col}>
     <div>  
+    <div class="row" className="hdr">  
+    <div >Customer Name</div> 
+    </div>  
+    <div className="form-group dropdn">  
+    <select className="form-control" name="customerName" value={customerName} onChange={this.orderChange}  >  
+    <option>Select Customer</option>  
+    {this.state.CustomerData.map((e, key) => {  
+    return <option key={key} value={e.customerName}>{e.customerName}</option>;  
+    })}  
+    </select>    
+    </div>  
+    </div>  
+  </Form.Group>  
+  <Form.Group as = {Col}>
+  <div>  
+    <div class="row" className="hdr">  
+    <div >Seed Name</div> 
+    </div>  
+    <div className="form-group dropdn">  
+    <select className="form-control" name="seedName" value={seedName} onChange={this.orderChange}  >  
+    <option>Select Seed</option>  
+    {this.state.SeedData.map((e, key) => {  
+    return <option key={key} value={e.seedName}>{e.seedName}</option>;  
+    })}  
+    </select>    
+    </div>  
+    </div>  
+  </Form.Group>
+  <Form.Group as = {Col}>
+  <div>  
 <div class="row" className="hdr">  
 <div >  
- Customer Name
+Tray Size
 </div> 
 </div>  
 <div className="form-group dropdn">  
-<select className="form-control" name="customerName" value={customerName} onChange={this.orderChange}  >  
-<option>Select Customer</option>  
-{this.state.CustomerData.map((e, key) => {  
-return <option key={key} value={e.customerName}>{e.customerName}</option>;  
+<select className="form-control" name="trayType" value={trayType} onChange={this.orderChange}  >  
+<option>Select Tray Size</option>  
+{this.state.TrayData.map((e, key) => {  
+return <option key={key} value={e.trayType}>{e.trayType}</option>;  
 })}  
 </select>    
 </div>  
 </div>  
-  </Form.Group>  
-  <Form.Group as = {Col}>
-    <Form.Label>Seed Name</Form.Label>
-    <Form.Control required autoComplete="off"
-     type = "text" name = "seedName"
-    placeholder="Enter Seed Name"
-    value = {seedName}
-    onChange={this.orderChange}/>
-  </Form.Group>
-  <Form.Group as = {Col}>
-    <Form.Label>Tray Size</Form.Label>
-    <Form.Control required autoComplete="off"
-     type = "text" name = "trayType"
-    placeholder="Enter Tray size"
-    value = {trayType}
-    onChange={this.orderChange}/>
   </Form.Group>
   <Form.Group as = {Col}>
     <Form.Label>Order Quantity</Form.Label>
