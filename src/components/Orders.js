@@ -5,6 +5,7 @@ import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
+import OrdersN from "./OrdersN";
 
 function withParams(Component) {
   return props => <Component {...props} params={useParams()} />;
@@ -21,7 +22,9 @@ class Orders extends Component{
     this.submitOrder = this.submitOrder.bind(this);
   }
 
+
   initialState = {
+    CustomerData: [],
     order:{
     orderId: "",
     orderDate: '',
@@ -51,8 +54,16 @@ class Orders extends Component{
       
     }
 
+    componentDidMount() {
+      axios.get(`http://localhost:8080/customers`).then(response => {
+      console.log(response.data);
+      this.setState({
+      CustomerData: response.data
+      });
+      });
+      }
+
     fetchData = orderId =>{
-      
       axios.get(`http://localhost:8080/orders/${orderId}`)
       .then(response =>{
         if (response.data!=null){
@@ -64,7 +75,7 @@ class Orders extends Component{
             deliveryDate: response.data.deliveryDate,
             qty: response.data.orderDetails[0].qty,
             seedName: response.data.orderDetails[0].seed.seedName,
-            size:response.data.orderDetails[0].tray.trayType
+            trayType:response.data.orderDetails[0].tray.trayType
           });
         }
       }).catch((error)=>{
@@ -95,7 +106,7 @@ class Orders extends Component{
                 seedName: this.state.seedName
             },
             tray:{
-                size:this.state.trayType
+                trayType:this.state.trayType
             }
         }
       ]
@@ -118,7 +129,7 @@ class Orders extends Component{
       orderDate: this.state.orderDate,
       deliveryDate: this.state.deliveryDate,
       customer:{
-      customerName: this.state.customerName
+        customerName:this.state.customerName
       },
       orderDetails:[
         {
@@ -151,6 +162,7 @@ class Orders extends Component{
     });
   }
 
+
   //add new order form
   render(){
     const {customerName, seedName, trayType, qty, orderDate, deliveryDate} = this.state;
@@ -161,12 +173,21 @@ class Orders extends Component{
         <Form onReset ={this.resetOrder} onSubmit={this.state.orderId ? this.updateOrder :this.submitOrder} id = "orderFormId">
           <Card.Body>
     <Form.Group as = {Col}>
-    <Form.Label>Customer Name</Form.Label>
-    <Form.Control required autoComplete="off"
-    type = "text" name ="customerName"
-    placeholder="Enter Customer Name"
-    value = {customerName}
-    onChange={this.orderChange}/>
+    <div>  
+<div class="row" className="hdr">  
+<div >  
+ Customer Name
+</div> 
+</div>  
+<div className="form-group dropdn">  
+<select className="form-control" name="customerName" value={customerName} onChange={this.orderChange}  >  
+<option>Select Customer</option>  
+{this.state.CustomerData.map((e, key) => {  
+return <option key={key} value={e.customerName}>{e.customerName}</option>;  
+})}  
+</select>    
+</div>  
+</div>  
   </Form.Group>  
   <Form.Group as = {Col}>
     <Form.Label>Seed Name</Form.Label>
@@ -178,29 +199,10 @@ class Orders extends Component{
   </Form.Group>
   <Form.Group as = {Col}>
     <Form.Label>Tray Size</Form.Label>
-    <Form.Check
-     type = "radio" label="10x20 lid" name = "trayType"
+    <Form.Control required autoComplete="off"
+     type = "text" name = "trayType"
+    placeholder="Enter Tray size"
     value = {trayType}
-    onChange={this.orderChange}/>
-    <Form.Check
-     type = "radio" label="10x20 base" name = "trayType"
-    value = {"10x20 base"}
-    onChange={this.orderChange}/>
-    <Form.Check
-     type = "radio" label="10x20 w/drain holes" name = "trayType"
-    value = {"10x20 w/drain holes"}
-    onChange={this.orderChange}/>
-    <Form.Check
-     type = "radio" label="6x8 lid" name = "trayType"
-    value = {"6x8 lid"}
-    onChange={this.orderChange}/>
-    <Form.Check
-     type = "radio" label="6x8 w/drain holes" name = "trayType"
-    value = {"6x8 w/drain holes"}
-    onChange={this.orderChange}/>
-    <Form.Check
-     type = "radio" label="6x8 base" name = "trayType"
-    value = {"6x8 base"}
     onChange={this.orderChange}/>
   </Form.Group>
   <Form.Group as = {Col}>
@@ -246,4 +248,3 @@ class Orders extends Component{
 
 
 export default withParams(Orders);
-

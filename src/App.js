@@ -16,6 +16,7 @@ import CustomerList from "./components/CustomerList.js";
 import CustomerAdd from "./components/CustomerAdd.js";
 import CustomerEdit from "./components/CustomerEdit.js";
 import DetailOrders from './components/DetailOrders.js';
+import OrdersN from './components/OrdersN.js';
 
 
 //import slideshow banner
@@ -23,6 +24,7 @@ import homepagepic from "./assets/homepagepicture.jpeg";
 import homepagepic2 from "./assets/homepagepicture2.jpeg";
 import homepagepic3 from "./assets/homepagepicture3.jpeg";
 import Carousel from 'react-bootstrap/Carousel'
+import AddCustomer from './components/orderForm/AddCustomer.js';
 
 
 
@@ -81,10 +83,11 @@ function App (){
       <Route path = "/orders" element = {<OrdersList/>}/>
       <Route path = "/orders/:orderId" element = {<DetailOrders/>}/>
       <Route path = "/orders/update/:orderId" element = {<Orders/>}/>
-      <Route path = "/customers" element = {<CustomerList/>}/>
+      {/* <Route path = "/customers" element = {<CustomerList/>}/> */}
       <Route path = "/customers/add" element = {<CustomerAdd/>}/>
       <Route path = "/customers/{customerId}" element = {<CustomerEdit/>}/>
       <Route path = "/orders/add" element = {<Orders/>}/> 
+      <Route path = "/customers" element = {<CustomerList/>}/> 
       <Route path = "/NewCalendar" element = {<NewCalendar/>}/>
       <Route path = "/Home" element = {<Home/>}/>
     </Routes>
