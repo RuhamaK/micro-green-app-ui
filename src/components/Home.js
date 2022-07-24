@@ -42,7 +42,7 @@ const Home = () => {
           />
 
           <Carousel.Caption>
-            <h3>Diakon radish</h3>
+            <h3>Daikon radish</h3>
             <p>One of the most popular radish falvors. Amazing for a salad</p>
           </Carousel.Caption>
         </Carousel.Item>

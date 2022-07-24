@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faInfo, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default class InventoryList extends Component{
 
@@ -94,8 +94,8 @@ export default class InventoryList extends Component{
                  <td>
                   <ButtonGroup>
                   <button size = "sm" variant = "outline-primary" onClick={() => { this.updateQuantity(seed.seedId)}}><FontAwesomeIcon icon = {faEdit}/></button>
-                  <button size = "sm" variant = "outline-primary" onClick={() => { this.seedDetails(seed.seedingDensity, seed.seedPresoak, seed.blackoutTime, seed.harvestTime)}}>Seed Details</button>
-                  {/* <button size = "sm" variant = "outline-primary" style = {{marginLeft:"10px"}} onClick={() => { this.deleteSeed(seed.seedId)}}> <FontAwesomeIcon icon = {faTrash}/></button> */}
+                  <button size = "sm" variant = "outline-primary"  style = {{marginLeft:"10px"}} onClick={() => { this.seedDetails(seed.seedingDensity, seed.seedPresoak, seed.blackoutTime, seed.harvestTime)}}><FontAwesomeIcon icon = {faInfo}/></button>
+                  <button size = "sm" variant = "outline-primary" style = {{marginLeft:"10px"}} onClick={() => { this.deleteSeed(seed.seedId)}}> <FontAwesomeIcon icon = {faTrash}/></button>
                   </ButtonGroup>
                 </td>
               </tr>

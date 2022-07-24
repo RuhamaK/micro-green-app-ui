@@ -27,8 +27,8 @@ class Orders extends Component{
     TrayData:[],
     SeedData:[],
     order:{
-    orderId: "",
-    orderDate: '',
+    orderId: '',
+    orderDate: new Date().toISOString().split('T', 1).toString(),
     deliveryDate: '',
     orderDetails: [ 
       {
@@ -53,9 +53,9 @@ class Orders extends Component{
           this.fetchData(orderId)
         }
       
-    }
+    
 
-    componentDidMount() {
+    // componentDidMount() {
       axios.get(`http://localhost:8080/customers`).then(response => {
       console.log(response.data);
       this.setState({
@@ -131,7 +131,7 @@ class Orders extends Component{
     .then(response => {
       if(response.data != null){
         alert("Order updated successfully");
-        window.location.replace("http://localhost:3000/orders");
+        // window.location.replace("http://localhost:3000/orders");
       }
   })
 }
@@ -146,7 +146,8 @@ class Orders extends Component{
       customer:{
         customerName:this.state.customerName
       },
-      orderDetails:[
+      orderDetails: 
+      [
         {
           qty: this.state.qty,
           seed:
@@ -166,7 +167,12 @@ class Orders extends Component{
       if(response.data != null){
         this.setState(this.initialState);
         alert("Order saved successfully");
+        // window.location.replace("http://localhost:3000/orders");
       }
+    }).catch(err => {
+      if(err.response){
+        alert(err.response.data.message);
+      }    
     });
   }
 
@@ -220,9 +226,7 @@ class Orders extends Component{
   <Form.Group as = {Col}>
   <div>  
 <div class="row" className="hdr">  
-<div >  
-Tray Size
-</div> 
+<div >Tray Size</div> 
 </div>  
 <div className="form-group dropdn">  
 <select className="form-control" name="trayType" value={trayType} onChange={this.orderChange}  >  

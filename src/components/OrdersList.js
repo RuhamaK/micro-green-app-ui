@@ -1,9 +1,11 @@
 import { Component } from 'react';
-import {Table, Button, ButtonGroup, Card} from 'react-bootstrap';
+import {Table, Button, ButtonGroup} from 'react-bootstrap';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faEdit, faTrash, faPlusSquare, faInfo } from '@fortawesome/free-solid-svg-icons';
+import microgreens3 from "../assets/microgreens3.jpg";
+import homepagepic3 from "../assets/homepagepicture3.jpeg";
 
 
 export default class OrdersList extends Component{
@@ -49,8 +51,19 @@ deleteOrder = (orderId) => {
     render(){
       return (
         <div className = "container">
-          <Button variant="dark" class="item" id="addOrdersBtn" onClick={()=>window.open("/orders/add", '_blank')}><FontAwesomeIcon icon = {faPlusSquare}/>ADD ORDERS</Button>
-          <h2 className='text-center'>Orders</h2>
+          <div class = "wrapper">
+          <img
+            className="d-block w-100"
+            src={homepagepic3}
+            alt="Orders"
+          />
+          <div class = "overlay">
+            <h2 class = "header" className='text-center'> Orders</h2>
+            </div>
+          </div>
+
+          
+          <Button variant="dark" class="item" id="addOrdersBtn" onClick={()=>window.open("/orders/add", '_self')}><FontAwesomeIcon icon = {faPlusSquare}/>ADD ORDERS</Button>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -86,8 +99,8 @@ deleteOrder = (orderId) => {
                  <td>
                   <ButtonGroup>
                     <Link to = {`update/${order.orderId}`} className ="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon = {faEdit}/></Link>
+                    <Link to = {`${order.orderId}`} className ="btn btn-sm btn-outline-primary" style = {{marginLeft:"10px"}}><FontAwesomeIcon icon = {faInfo}/></Link>
                     <button size = "sm" variant = "outline-primary" onClick= {this.deleteOrder.bind(this, order.orderId)} style = {{marginLeft:"10px"}}> <FontAwesomeIcon icon = {faTrash}/></button>
-                    {/* <Link to = {`${order.orderId}`} className ="btn btn-sm btn-outline-primary" style = {{marginLeft:"10px"}}><FontAwesomeIcon icon = {faInfo}/></Link> */}
                     {/* <button size = "sm" variant = "outline-primary" onClick={() => { this.seedDetails(seed.seedingDensity, seed.seedPresoak, seed.blackoutTime, seed.harvestTime)}}><FontAwesomeIcon icon = {faInfo}/></button> */}
                   </ButtonGroup>
                 </td>
