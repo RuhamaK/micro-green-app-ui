@@ -3,6 +3,7 @@ import {Card, Form, Button, Col} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faUndo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import homepagepic2 from "../assets/homepagepicture2.jpeg";
 
 export default class Inventory extends Component{
 
@@ -55,6 +56,14 @@ export default class Inventory extends Component{
     const {seedName, qty, seedingDensity, seedPresoak, blackoutTime, harvestTime} = this.state;
 
     return (
+      <div className = "container">
+          <div class = "wrapper">
+          <img
+            className="d-block w-100"
+            src={homepagepic2}
+            alt="Orders"
+          />
+          </div>
       <Card className="border border-dark formcard">
         <Card.Header as="h5">Add New Seed</Card.Header>
         <Form onReset ={this.resetInventory} onSubmit={this.submitInventory} id = "inventoryFormId">
@@ -123,6 +132,7 @@ export default class Inventory extends Component{
   </Card.Footer>
   </Form>
   </Card>
+  </div>
     ) 
 }
 }

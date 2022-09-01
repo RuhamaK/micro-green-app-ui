@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
-import homepagepic2 from "../assets/homepagepicture3.jpeg";
+import homepagepic2 from "../assets/homepagepicture2.jpeg";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useParams } from "react-router-dom";
@@ -62,6 +62,7 @@ function withParams(Component) {
         <Card.Text>
         <p>Seed ID: {this.state.seed.seedId}</p>
         <p>Seed Name: {this.state.seed.seedName}</p>
+        <p>Seed Quantity: {this.state.seed.qty}</p>
         <p>Seeding Density: {this.state.seed.seedingDensity}</p>
         <p>Seed Presoak: {this.state.seed.seedPresoak.toString().toUpperCase()}</p>
         <p>Blackout Time: {this.state.seed.blackoutTime}</p>

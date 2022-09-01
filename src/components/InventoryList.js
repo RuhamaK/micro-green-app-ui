@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 import { faEdit, faInfo, faTrash } from '@fortawesome/free-solid-svg-icons';
+import homepagepic2 from "../assets/homepagepicture2.jpeg";
 
 export default class InventoryList extends Component{
 
@@ -66,6 +67,14 @@ export default class InventoryList extends Component{
     render(){
       return (
         <div className = "container">
+          <div class = "wrapper">
+          <img
+            className="d-block w-100"
+            src={homepagepic2}
+            alt="Orders"
+          />
+          </div>
+        <div className = "container">
           <h2 className='text-center'>Inventory</h2>
           <Link to = {"/inventory/add"}><Button variant="dark" class="item" id="addInventoryBtn"><FontAwesomeIcon icon = {faPlusSquare}/>ADD NEW SEED</Button></Link>
         <Table striped bordered hover>
@@ -98,6 +107,7 @@ export default class InventoryList extends Component{
           }
           </tbody>
              </Table>   
+               </div>
                </div>
                   )
                     }
