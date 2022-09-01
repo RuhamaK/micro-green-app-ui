@@ -30,15 +30,6 @@ export default class OrdersList extends Component{
   });
 }
 
-// viewOrder(orderId){
-//   // this.props.history.push(`/orders/${orderId}`);
-//   axios.get(`http://localhost:8080/orders/${orderId}`)
-//   .then((response) => {
-//     this.setState(response.data);
-//     console.log(response.data);
-//   })
-//   .catch((err) => console.log(err));
-// }
 
 deleteOrder = (orderId) => {
   axios.delete(`http://localhost:8080/orders/delete/${orderId}`)
@@ -67,7 +58,7 @@ deleteOrder = (orderId) => {
           </div>
 
           
-          <Button variant="dark" class="item" id="addOrdersBtn" onClick={()=>window.open("/orders/add", '_self')}><FontAwesomeIcon icon = {faPlusSquare}/>ADD ORDERS</Button>
+          <Button variant="dark" class="item" id="addOrdersBtn" onClick={()=>window.open("/orders/add", '_self')}><FontAwesomeIcon icon = {faPlusSquare}/>ADD NEW ORDER</Button>
         <Table striped bordered hover>
           <thead>
             <tr>

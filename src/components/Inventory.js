@@ -1,8 +1,7 @@
 import { Component } from "react";
 import {Card, Form, Button, Col} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
-
+import { faSave, faUndo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 export default class Inventory extends Component{
@@ -57,7 +56,7 @@ export default class Inventory extends Component{
 
     return (
       <Card className="border border-dark formcard">
-        <Card.Header>Add New Inventory</Card.Header>
+        <Card.Header as="h5">Add New Seed</Card.Header>
         <Form onReset ={this.resetInventory} onSubmit={this.submitInventory} id = "inventoryFormId">
           <Card.Body>
     <Form.Group as = {Col}>

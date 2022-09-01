@@ -15,6 +15,7 @@ import CustomerList from "./components/CustomerList.js";
 import CustomerAdd from "./components/CustomerAdd.js";
 import CustomerEdit from "./components/CustomerEdit.js";
 import DetailOrders from './components/DetailOrders.js';
+import SeedDetails from './components/SeedDetails.js';
 
 function App (){
 
@@ -29,6 +30,7 @@ function App (){
       <Route path = "/inventory/add" element = {<Inventory/>}/>
       <Route path = "/inventory/delete/{seedId}" element = {<Inventory/>}/>
       <Route path = "/inventory/update/{seedId}" element = {<Inventory/>}/>
+      <Route path = "/inventory/:seedId" element = {<SeedDetails/>}/>
       <Route path = "/orders" element = {<OrdersList/>}/>
       <Route path = "/orders/:orderId" element = {<DetailOrders/>}/>
       <Route path = "/orders/update/:orderId" element = {<Orders/>}/>

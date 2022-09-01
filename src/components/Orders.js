@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import {Card, Form, Button, Col} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
+import homepagepic3 from "../assets/homepagepicture3.jpeg";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -189,14 +190,22 @@ class Orders extends Component{
     const {customerName, seedName, trayType, qty, orderDate, deliveryDate} = this.state;
 
     return (
+      <div className = "container">
+      <div class = "wrapper">
+      <img
+        className="d-block w-100"
+        src={homepagepic3}
+        alt="Orders"
+      />
+      </div>
       <Card className="border border-dark formcard">
-        <Card.Header>{this.state.orderId ? "Update Order" : "Add New Order"}</Card.Header>
+        <Card.Header as="h5">{this.state.orderId ? "Update Order" : "Add New Order"}</Card.Header>
         <Form onReset ={this.resetOrder} onSubmit={this.state.orderId ? this.updateOrder :this.submitOrder} id = "orderFormId">
           <Card.Body>
     <Form.Group as = {Col}>
     <div>  
     <div class="row" className="hdr">  
-    <div >Customer Name</div> 
+    <div as ="h5">Customer Name</div> 
     </div>  
     <div className="form-group dropdn">  
     <select className="form-control" name="customerName" value={customerName} onChange={this.orderChange}  >  
@@ -275,6 +284,7 @@ return <option key={key} value={e.trayType}>{e.trayType}</option>;
   </Card.Footer>
   </Form>
   </Card>
+  </div>
          ) 
 }
 }
