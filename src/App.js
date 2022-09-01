@@ -6,7 +6,6 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 //import pages to create route for home, inventory, orders, calendar
 import Inventory from "./components/Inventory.js";
-
 import InventoryList from "./components/InventoryList.js";
 import Home from "./components/Home.js"
 import Orders from "./components/Orders.js";

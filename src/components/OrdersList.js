@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faEdit, faTrash, faPlusSquare, faInfo } from '@fortawesome/free-solid-svg-icons';
-import microgreens3 from "../assets/microgreens3.jpg";
+// import microgreens3 from "../assets/microgreens3.jpg";
 import homepagepic3 from "../assets/homepagepicture3.jpeg";
 
 
@@ -30,6 +30,15 @@ export default class OrdersList extends Component{
   });
 }
 
+// viewOrder(orderId){
+//   // this.props.history.push(`/orders/${orderId}`);
+//   axios.get(`http://localhost:8080/orders/${orderId}`)
+//   .then((response) => {
+//     this.setState(response.data);
+//     console.log(response.data);
+//   })
+//   .catch((err) => console.log(err));
+// }
 
 deleteOrder = (orderId) => {
   axios.delete(`http://localhost:8080/orders/delete/${orderId}`)
@@ -42,11 +51,6 @@ deleteOrder = (orderId) => {
     }
   });
 };
-
-// seedDetails(seedingDensity, seedPresoak, blackoutTime, harvestTime) {
-//   let txt = `Seeding Density: ${seedingDensity}\n` + `Seeding Presoak: ${seedPresoak}\n` + `Blackout Time: ${blackoutTime}\n` + `Harvest Time: ${harvestTime}`;
-//   alert(txt);
-// }
 
     render(){
       return (
@@ -99,9 +103,10 @@ deleteOrder = (orderId) => {
                  <td>
                   <ButtonGroup>
                     <Link to = {`update/${order.orderId}`} className ="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon = {faEdit}/></Link>
+                    {/* <button style={{marginLeft: "10px"}} onClick={ () => this.viewOrder(order.orderId)} className ="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon = {faInfo}/></button> */}
                     <Link to = {`${order.orderId}`} className ="btn btn-sm btn-outline-primary" style = {{marginLeft:"10px"}}><FontAwesomeIcon icon = {faInfo}/></Link>
                     <button size = "sm" variant = "outline-primary" onClick= {this.deleteOrder.bind(this, order.orderId)} style = {{marginLeft:"10px"}}> <FontAwesomeIcon icon = {faTrash}/></button>
-                    {/* <button size = "sm" variant = "outline-primary" onClick={() => { this.seedDetails(seed.seedingDensity, seed.seedPresoak, seed.blackoutTime, seed.harvestTime)}}><FontAwesomeIcon icon = {faInfo}/></button> */}
+                    
                   </ButtonGroup>
                 </td>
               </tr>
